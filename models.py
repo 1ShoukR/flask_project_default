@@ -14,8 +14,10 @@ class User(db.Model):
 
 class ToDO(db.Model):
     id = db.Column(db.Integer, primary_key=True) # can make foreign key
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    user_id = db.Column(db.Integer, nullable=False)
     title = db.Column(db.String(120), nullable=False)
     description = db.Column(db.Text(), nullable=True)
-    due_date = db.Column(db.DateTime(timezone=True), nullable=True)
+    due_date = db.Column(db.Date, nullable=True)
+    completed = db.Column(db.Boolean, nullable=False, default=False)
+    order_of_to_do = db.Column(db.Integer, nullable=False, autoincrement=True)
 
